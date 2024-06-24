@@ -15,7 +15,7 @@ import (
 
 type oauth struct {
 	// Set
-	baseDomain   string
+	Fqdn         string
 	clientId     string
 	clientSecret string
 	bufferPeriod time.Duration
@@ -45,7 +45,7 @@ func (a *oauth) getNewToken() error {
 	data.Set("client_secret", a.clientSecret)
 	data.Set("grant_type", "client_credentials")
 
-	oauthComlpeteEndpoint := a.baseDomain + oAuthTokenEndpoint
+	oauthComlpeteEndpoint := a.Fqdn + oAuthTokenEndpoint
 	req, err := http.NewRequest("POST", oauthComlpeteEndpoint, strings.NewReader(data.Encode()))
 	if err != nil {
 		return err

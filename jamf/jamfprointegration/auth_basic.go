@@ -12,7 +12,7 @@ import (
 
 type basicAuth struct {
 	// Set
-	baseDomain   string
+	Fqdn         string
 	username     string
 	password     string
 	bufferPeriod time.Duration
@@ -50,7 +50,7 @@ type basicAuthResponse struct {
 func (a *basicAuth) getNewToken() error {
 	client := http.Client{}
 
-	completeBearerEndpoint := a.baseDomain + bearerTokenEndpoint
+	completeBearerEndpoint := a.Fqdn + bearerTokenEndpoint
 	req, err := http.NewRequest("POST", completeBearerEndpoint, nil)
 	if err != nil {
 		return err

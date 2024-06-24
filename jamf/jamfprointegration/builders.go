@@ -7,9 +7,9 @@ import (
 )
 
 // TODO migrate strings
-func BuildIntegrationWithOAuth(jamfBaseDomain string, logger logger.Logger, bufferPeriod time.Duration, clientId string, clientSecret string) (*Integration, error) {
+func BuildIntegrationWithOAuth(jamfFqdn string, logger logger.Logger, bufferPeriod time.Duration, clientId string, clientSecret string) (*Integration, error) {
 	integration := Integration{
-		BaseDomain:           jamfBaseDomain,
+		Fqdn:                 jamfFqdn,
 		Logger:               logger,
 		AuthMethodDescriptor: "oauth2",
 	}
@@ -21,9 +21,9 @@ func BuildIntegrationWithOAuth(jamfBaseDomain string, logger logger.Logger, buff
 }
 
 // TODO migrate strings
-func BuildIntegrationWithBasicAuth(jamfBaseDomain string, logger logger.Logger, bufferPeriod time.Duration, username string, password string) (*Integration, error) {
+func BuildIntegrationWithBasicAuth(jamfFqdn string, logger logger.Logger, bufferPeriod time.Duration, username string, password string) (*Integration, error) {
 	integration := Integration{
-		BaseDomain:           jamfBaseDomain,
+		Fqdn:                 jamfFqdn,
 		Logger:               logger,
 		AuthMethodDescriptor: "basic",
 	}
@@ -40,7 +40,7 @@ func (j *Integration) BuildOAuth(clientId string, clientSecret string, bufferPer
 		clientId:     clientId,
 		clientSecret: clientSecret,
 		bufferPeriod: bufferPeriod,
-		baseDomain:   j.BaseDomain,
+		Fqdn:         j.Fqdn,
 		Logger:       j.Logger,
 	}
 
@@ -54,7 +54,7 @@ func (j *Integration) BuildBasicAuth(username string, password string, bufferPer
 		password:     password,
 		bufferPeriod: bufferPeriod,
 		logger:       j.Logger,
-		baseDomain:   j.BaseDomain,
+		Fqdn:         j.Fqdn,
 	}
 
 	j.auth = &authInterface

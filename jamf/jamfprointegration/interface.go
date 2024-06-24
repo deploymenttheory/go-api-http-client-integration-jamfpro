@@ -8,7 +8,7 @@ import (
 
 // JamfAPIHandler implements the APIHandler interface for the Jamf Pro API.
 type Integration struct {
-	BaseDomain           string
+	Fqdn                 string
 	AuthMethodDescriptor string
 	Logger               logger.Logger
 	auth                 authInterface
@@ -18,7 +18,7 @@ type Integration struct {
 
 // TODO migrate strings
 func (j *Integration) GetFQDN() string {
-	return j.BaseDomain
+	return j.Fqdn
 }
 
 // TODO this comment
